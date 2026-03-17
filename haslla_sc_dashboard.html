@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>하슬라 SC 온라인 영업 파트너</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Pretendard:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0b;
+  --bg2: #111114;
+  --bg3: #18181c;
+  --bg4: #1f1f25;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.13);
+  --text: #f0efe8;
+  --text2: #9a9890;
+  --text3: #5a5855;
+  --blue: #3b8be8;
+  --blue-dim: rgba(59,139,232,0.12);
+  --blue-border: rgba(59,139,232,0.3);
+  --gold: #c9a84c;
+  --gold-dim: rgba(201,168,76,0.1);
+  --green: #3dab7a;
+  --green-dim: rgba(61,171,122,0.1);
+  --red: #e05555;
+  --red-dim: rgba(224,85,85,0.1);
+  --amber: #e09855;
+  --amber-dim: rgba(224,152,85,0.1);
+  --radius: 10px;
+  --radius-lg: 16px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Pretendard', -apple-system, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ── Topbar ── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10,10,11,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 56px;
+}
+.topbar-brand {
+  display: flex; align-items: center; gap: 10px;
+}
+.brand-mark {
+  width: 28px; height: 28px; border-radius: 6px;
+  background: var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'DM Serif Display', serif;
+  font-size: 14px; color: #0a0a0b; font-weight: 400;
+}
+.brand-name { font-size: 14px; font-weight: 500; letter-spacing: 0.02em; }
+.brand-sub { font-size: 11px; color: var(--text3); margin-left: 6px; }
+.topbar-nav { display: flex; gap: 2px; }
+.nav-btn {
+  padding: 5px 12px; border-radius: 6px;
+  background: none; border: none; color: var(--text2);
+  font-size: 12px; cursor: pointer; transition: all .15s;
+  font-family: 'Pretendard', sans-serif;
+}
+.nav-btn:hover, .nav-btn.active { background: var(--bg3); color: var(--text); }
+.topbar-right { display: flex; align-items: center; gap: 8px; }
+.date-chip {
+  font-size: 11px; color: var(--text3);
+  background: var(--bg3); border: 1px solid var(--border);
+  padding: 4px 10px; border-radius: 99px;
+}
+
+/* ── Layout ── */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.page { display: none; padding: 32px 0 80px; }
+.page.active { display: block; }
+
+/* ── Hero ── */
+.hero {
+  padding: 48px 0 40px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 32px;
+}
+.hero-eyebrow {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.12em;
+  color: var(--gold); text-transform: uppercase; margin-bottom: 12px;
+}
+.hero-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.2; color: var(--text);
+  margin-bottom: 12px;
+}
+.hero-title em { font-style: italic; color: var(--gold); }
+.hero-desc { font-size: 14px; color: var(--text2); max-width: 520px; line-height: 1.7; }
+
+/* ── Section title ── */
+.sec-title {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+  color: var(--text3); text-transform: uppercase;
+  margin-bottom: 14px; margin-top: 32px;
+}
+.sec-title:first-child { margin-top: 0; }
+
+/* ── Cards ── */
+.card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px 22px;
+  margin-bottom: 12px;
+  transition: border-color .2s;
+}
+.card:hover { border-color: var(--border2); }
+.card-title { font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+.card-body { font-size: 13px; color: var(--text2); line-height: 1.7; }
+
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+@media(max-width:700px){
+  .grid2,.grid3{grid-template-columns:1fr;}
+  .topbar-nav{display:none;}
+}
+
+/* ── Stat cards ── */
+.stat-card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+}
+.stat-num { font-size: 28px; font-weight: 600; line-height: 1; margin-bottom: 4px; }
+.stat-label { font-size: 11px; color: var(--text3); }
+.stat-target { font-size: 11px; margin-top: 4px; font-weight: 500; }
+
+/* ── Badges ── */
+.badge {
+  display: inline-block; font-size: 10px; font-weight: 600;
+  padding: 2px 8px; border-radius: 99px; letter-spacing: 0.04em;
+}
+.badge-gold { background: var(--gold-dim); color: var(--gold); border: 1px solid rgba(201,168,76,0.2); }
+.badge-blue { background: var(--blue-dim); color: var(--blue); border: 1px solid var(--blue-border); }
+.badge-green { background: var(--green-dim); color: var(--green); border: 1px solid rgba(61,171,122,0.2); }
+.badge-red { background: var(--red-dim); color: var(--red); border: 1px solid rgba(224,85,85,0.2); }
+.badge-amber { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(224,152,85,0.2); }
+
+/* ── Task list ── */
+.task-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 12px 0; border-bottom: 1px solid var(--border);
+}
+.task-item:last-child { border-bottom: none; }
+.task-cb {
+  width: 20px; height: 20px; border-radius: 5px;
+  border: 1.5px solid var(--border2); cursor: pointer;
+  flex-shrink: 0; margin-top: 1px; transition: all .15s;
+  display: flex; align-items: center; justify-content: center;
+}
+.task-cb.checked { background: var(--green); border-color: var(--green); }
+.task-cb.checked::after {
+  content: ''; display: block;
+  width: 5px; height: 9px;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(45deg) translate(-1px,-1px);
+}
+.task-content { flex: 1; min-width: 0; }
+.task-name { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+.task-desc { font-size: 12px; color: var(--text2); line-height: 1.6; }
+.task-meta { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+.time-pill {
+  font-size: 10px; font-weight: 500;
+  padding: 2px 8px; border-radius: 99px;
+  background: var(--bg4); color: var(--text3);
+  border: 1px solid var(--border);
+}
+
+/* ── Script blocks ── */
+.script-block {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px; margin-bottom: 10px;
+}
+.script-label {
+  font-size: 10px; font-weight: 600; letter-spacing: 0.08em;
+  color: var(--text3); text-transform: uppercase; margin-bottom: 8px;
+}
+.script-text {
+  font-size: 13px; color: var(--text); line-height: 1.8;
+  white-space: pre-line;
+}
+.copy-btn {
+  margin-top: 10px; padding: 5px 12px;
+  border-radius: 6px; border: 1px solid var(--border2);
+  background: none; color: var(--text2); font-size: 11px;
+  cursor: pointer; transition: all .15s;
+  font-family: 'Pretendard', sans-serif;
+}
+.copy-btn:hover { background: var(--bg4); color: var(--text); }
+.copy-btn.copied { color: var(--green); border-color: rgba(61,171,122,0.3); }
+
+/* ── Step nav (blog format) ── */
+.step-nav { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 16px; }
+.step-btn {
+  padding: 5px 12px; border-radius: 6px;
+  border: 1px solid var(--border); background: none;
+  color: var(--text2); font-size: 12px; cursor: pointer;
+  transition: all .15s; font-family: 'Pretendard', sans-serif;
+}
+.step-btn:hover { background: var(--bg3); color: var(--text); }
+.step-btn.active { background: var(--blue-dim); color: var(--blue); border-color: var(--blue-border); }
+.step-panel { display: none; }
+.step-panel.active { display: block; }
+
+/* ── Progress bar ── */
+.prog { display: flex; gap: 3px; margin-bottom: 16px; }
+.prog-seg { flex: 1; height: 3px; border-radius: 2px; background: var(--border2); transition: background .2s; }
+.prog-seg.on { background: var(--blue); }
+
+/* ── KV rows ── */
+.kv { display: flex; justify-content: space-between; align-items: baseline; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+.kv:last-child { border-bottom: none; }
+.kv-k { color: var(--text2); font-size: 12px; flex-shrink: 0; max-width: 45%; }
+.kv-v { color: var(--text); font-size: 12px; font-weight: 500; text-align: right; max-width: 55%; }
+
+/* ── Info boxes ── */
+.info-box {
+  border-radius: var(--radius); padding: 10px 14px; margin: 10px 0;
+  font-size: 12px; line-height: 1.65;
+}
+.info-blue { background: var(--blue-dim); border-left: 2px solid var(--blue); color: #7db8f5; }
+.info-gold { background: var(--gold-dim); border-left: 2px solid var(--gold); color: #d4b46a; }
+.info-red { background: var(--red-dim); border-left: 2px solid var(--red); color: #e87a7a; }
+.info-green { background: var(--green-dim); border-left: 2px solid var(--green); color: #6dc9a0; }
+
+/* ── Week plan ── */
+.week-row { display: flex; gap: 4px; margin-bottom: 16px; }
+.wday { flex: 1; text-align: center; }
+.wday-l { font-size: 10px; color: var(--text3); margin-bottom: 4px; }
+.wday-b { height: 4px; border-radius: 2px; }
+
+/* ── Judge cards ── */
+.judge-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin: 12px 0; }
+.judge-card { border-radius: var(--radius); padding: 14px; border: 1px solid var(--border); }
+.judge-title { font-size: 12px; font-weight: 600; margin-bottom: 8px; }
+.judge-body { font-size: 11px; color: var(--text2); line-height: 1.7; }
+.judge-continue { background: var(--green-dim); border-color: rgba(61,171,122,0.2); }
+.judge-continue .judge-title { color: var(--green); }
+.judge-adjust { background: var(--amber-dim); border-color: rgba(224,152,85,0.2); }
+.judge-adjust .judge-title { color: var(--amber); }
+.judge-pivot { background: var(--red-dim); border-color: rgba(224,85,85,0.2); }
+.judge-pivot .judge-title { color: var(--red); }
+
+/* ── Counter ── */
+.counter-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin: 12px 0; }
+.counter-card {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px; text-align: center;
+}
+.counter-val { font-size: 32px; font-weight: 600; line-height: 1; margin-bottom: 4px; }
+.counter-label { font-size: 11px; color: var(--text3); margin-bottom: 8px; }
+.counter-btns { display: flex; gap: 4px; justify-content: center; }
+.counter-btn {
+  width: 28px; height: 28px; border-radius: 6px;
+  border: 1px solid var(--border2); background: none;
+  color: var(--text2); font-size: 16px; cursor: pointer;
+  transition: all .15s; line-height: 1;
+  font-family: 'Pretendard', sans-serif;
+}
+.counter-btn:hover { background: var(--bg4); color: var(--text); }
+
+/* ── AI Assistant ── */
+.ai-box {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.ai-header {
+  padding: 14px 18px;
+  background: var(--bg3);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 10px;
+}
+.ai-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+.ai-name { font-size: 13px; font-weight: 500; }
+.ai-sub { font-size: 11px; color: var(--text3); margin-left: auto; }
+.ai-messages {
+  padding: 16px 18px;
+  min-height: 200px;
+  max-height: 340px;
+  overflow-y: auto;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.ai-messages::-webkit-scrollbar { width: 4px; }
+.ai-messages::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+.msg { max-width: 85%; font-size: 13px; line-height: 1.65; }
+.msg-user {
+  align-self: flex-end;
+  background: var(--blue-dim);
+  border: 1px solid var(--blue-border);
+  color: var(--text);
+  padding: 8px 12px; border-radius: 10px 10px 2px 10px;
+}
+.msg-ai {
+  align-self: flex-start;
+  background: var(--bg4);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px 12px; border-radius: 10px 10px 10px 2px;
+}
+.msg-ai-label { font-size: 10px; color: var(--gold); font-weight: 600; margin-bottom: 4px; letter-spacing: .06em; }
+.typing {
+  align-self: flex-start;
+  background: var(--bg4); border: 1px solid var(--border);
+  padding: 10px 14px; border-radius: 10px 10px 10px 2px;
+  display: none;
+}
+.typing-dots { display: flex; gap: 4px; }
+.typing-dots span {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--text3);
+  animation: blink 1.2s infinite;
+}
+.typing-dots span:nth-child(2){animation-delay:.2s;}
+.typing-dots span:nth-child(3){animation-delay:.4s;}
+@keyframes blink{0%,80%,100%{opacity:.2}40%{opacity:1}}
+.ai-input-row {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+  display: flex; gap: 8px;
+}
+.ai-input {
+  flex: 1; background: var(--bg3);
+  border: 1px solid var(--border2); border-radius: 8px;
+  color: var(--text); font-size: 13px; padding: 8px 12px;
+  font-family: 'Pretendard', sans-serif;
+  outline: none; transition: border .15s;
+}
+.ai-input:focus { border-color: var(--blue); }
+.ai-input::placeholder { color: var(--text3); }
+.ai-send {
+  padding: 8px 14px; border-radius: 8px;
+  background: var(--blue); border: none; color: #fff;
+  font-size: 12px; font-weight: 500; cursor: pointer;
+  transition: opacity .15s; font-family: 'Pretendard', sans-serif;
+}
+.ai-send:hover { opacity: .85; }
+.ai-send:disabled { opacity: .4; cursor: default; }
+.quick-btns { padding: 0 16px 12px; display: flex; gap: 6px; flex-wrap: wrap; }
+.quick-btn {
+  padding: 4px 10px; border-radius: 6px;
+  border: 1px solid var(--border2); background: none;
+  color: var(--text2); font-size: 11px; cursor: pointer;
+  transition: all .15s; font-family: 'Pretendard', sans-serif;
+}
+.quick-btn:hover { background: var(--bg3); color: var(--text); }
+
+/* ── Roadmap ── */
+.roadmap-phase {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden; margin-bottom: 10px;
+}
+.phase-header {
+  padding: 14px 18px;
+  display: flex; align-items: center; gap: 12px; cursor: pointer;
+}
+.phase-marker {
+  width: 4px; border-radius: 2px;
+  align-self: stretch; flex-shrink: 0;
+}
+.phase-title { font-size: 14px; font-weight: 500; flex: 1; }
+.phase-period { font-size: 11px; color: var(--text3); }
+.phase-arrow { font-size: 12px; color: var(--text3); transition: transform .2s; }
+.phase-header.open .phase-arrow { transform: rotate(180deg); }
+.phase-body { padding: 0 18px 14px; display: none; border-top: 1px solid var(--border); padding-top: 14px; }
+.phase-body.open { display: block; }
+
+/* ── Keyword tiers ── */
+.kw-tier {
+  border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden; margin-bottom: 10px;
+}
+.kw-head {
+  padding: 8px 12px; font-size: 12px; font-weight: 500;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.kw-body { padding: 8px 12px; }
+.kw-row {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 12px;
+}
+.kw-row:last-child { border-bottom: none; }
+.kw-word { font-weight: 600; color: var(--text); min-width: 160px; flex-shrink: 0; }
+.kw-why { color: var(--text2); line-height: 1.55; }
+
+/* ── Content format stepper ── */
+.format-step {
+  border-left: 2px solid var(--border2); margin-left: 10px;
+  padding: 0 0 20px 20px; position: relative;
+}
+.format-step:last-child { padding-bottom: 0; }
+.format-step::before {
+  content: attr(data-n);
+  position: absolute; left: -12px; top: 0;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--bg3); border: 1px solid var(--border2);
+  font-size: 11px; font-weight: 600; color: var(--text2);
+  display: flex; align-items: center; justify-content: center;
+}
+.format-step.active-step { border-color: var(--blue); }
+.format-step.active-step::before {
+  background: var(--blue-dim); border-color: var(--blue);
+  color: var(--blue);
+}
+.format-step-title { font-size: 13px; font-weight: 500; margin-bottom: 4px; }
+.format-step-desc { font-size: 12px; color: var(--text2); line-height: 1.65; }
+.format-example {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 6px; padding: 10px 12px; margin-top: 8px;
+  font-size: 12px; color: var(--text); line-height: 1.7;
+  white-space: pre-line;
+}
+
+/* ── Persona cards ── */
+.persona-card {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 16px;
+}
+.persona-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; margin-bottom: 10px;
+}
+.persona-name { font-size: 13px; font-weight: 600; margin-bottom: 3px; }
+.persona-sub { font-size: 11px; color: var(--text3); margin-bottom: 10px; }
+.persona-body { font-size: 12px; color: var(--text2); line-height: 1.65; }
+
+/* ── Animations ── */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(12px); }
+  to { opacity:1; transform:translateY(0); }
+}
+.page.active > * { animation: fadeUp .3s ease forwards; }
+.page.active > *:nth-child(2){animation-delay:.05s}
+.page.active > *:nth-child(3){animation-delay:.1s}
+.page.active > *:nth-child(4){animation-delay:.15s}
+</style>
+</head>
+<body>
+
+<!-- Topbar -->
+<div class="topbar">
+  <div class="topbar-brand">
+    <div class="brand-mark">H</div>
+    <span class="brand-name">하슬라 SC 파트너</span>
+    <span class="brand-sub">BMW · MINI 강릉</span>
+  </div>
+  <div class="topbar-nav">
+    <button class="nav-btn active" onclick="goPage('home')">홈</button>
+    <button class="nav-btn" onclick="goPage('action')">오늘의 액션</button>
+    <button class="nav-btn" onclick="goPage('content')">콘텐츠 포맷</button>
+    <button class="nav-btn" onclick="goPage('scripts')">문자 템플릿</button>
+    <button class="nav-btn" onclick="goPage('strategy')">채널 전략</button>
+    <button class="nav-btn" onclick="goPage('kpi')">실적 트래커</button>
+    <button class="nav-btn" onclick="goPage('ai')">AI 비서</button>
+  </div>
+  <div class="topbar-right">
+    <div class="date-chip" id="date-chip"></div>
+  </div>
+</div>
+
+<!-- ═══════════════ HOME ═══════════════ -->
+<div id="page-home" class="page active">
+<div class="container">
+  <div class="hero">
+    <div class="hero-eyebrow">BMW · MINI 하슬라 강릉 전시장</div>
+    <h1 class="hero-title">온라인 영업을<br><em>내 비서</em>가 대신합니다</h1>
+    <p class="hero-desc">오프라인 세일즈에 집중하면서도 온라인 채널이 쉬지 않고 돌아가도록. SC를 위한 전략·포맷·템플릿·AI 비서를 한 곳에 담았습니다.</p>
+  </div>
+
+  <div class="sec-title">빠른 시작</div>
+  <div class="grid3">
+    <div class="card" style="cursor:pointer;border-color:rgba(201,168,76,0.2)" onclick="goPage('action')">
+      <div style="font-size:22px;margin-bottom:10px">⚡</div>
+      <div class="card-title">오늘의 액션</div>
+      <div class="card-body">지금 당장 실행할 수 있는 영업 액션 체크리스트. 매일 아침 여기부터.</div>
+    </div>
+    <div class="card" style="cursor:pointer" onclick="goPage('scripts')">
+      <div style="font-size:22px;margin-bottom:10px">✉️</div>
+      <div class="card-title">문자 템플릿</div>
+      <div class="card-body">미완결 고객 재접촉, 기존 고객 안부, 인바운드 응대. 복사해서 바로 발송.</div>
+    </div>
+    <div class="card" style="cursor:pointer" onclick="goPage('ai')">
+      <div style="font-size:22px;margin-bottom:10px">🤖</div>
+      <div class="card-title">AI 비서에게 물어보기</div>
+      <div class="card-body">블로그 글, 쇼츠 대본, 고객 상황별 응대 멘트를 즉시 생성.</div>
+    </div>
+  </div>
+
+  <div class="sec-title">채널 현황 — 오픈 3년차 전환 전략</div>
+  <div class="card">
+    <div style="display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap">
+      <div style="flex:1;min-width:200px">
+        <div class="card-title" style="margin-bottom:8px">지금 해결해야 할 핵심 과제</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="display:flex;align-items:center;gap:8px"><span class="badge badge-red">긴급</span><span style="font-size:12px;color:var(--text2)">가격 경쟁 탈피 — 서비스 가치로 소구</span></div>
+          <div style="display:flex;align-items:center;gap:8px"><span class="badge badge-amber">중요</span><span style="font-size:12px;color:var(--text2)">재구매·고가망 고객 파이프라인 확보</span></div>
+          <div style="display:flex;align-items:center;gap:8px"><span class="badge badge-blue">진행</span><span style="font-size:12px;color:var(--text2)">할부·리스·렌트 유형별 콘텐츠 구축</span></div>
+          <div style="display:flex;align-items:center;gap:8px"><span class="badge badge-blue">진행</span><span style="font-size:12px;color:var(--text2)">담당자 신뢰 중심 채널 아이덴티티</span></div>
+        </div>
+      </div>
+      <div style="flex:1;min-width:200px">
+        <div class="card-title" style="margin-bottom:8px">포지셔닝 핵심 메시지</div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.75">
+          "BMW·MINI를 사는 곳이 아니라<br>
+          <strong style="color:var(--gold)">강릉에서 BMW·MINI 라이프스타일을 사는 곳</strong>"<br><br>
+          서울 안 가도 된다 → 장벽 제거<br>
+          담당자 관계가 오래 간다 → 신뢰 소구<br>
+          강릉 라이프스타일이 차별점 → 감성 소구
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-title">핵심 타깃 페르소나</div>
+  <div class="grid3">
+    <div class="persona-card">
+      <div class="persona-avatar" style="background:rgba(59,139,232,0.1)">🏢</div>
+      <div class="persona-name">강릉 사업주</div>
+      <div class="persona-sub">40대 · 법인/현금+할부</div>
+      <div class="persona-body">숙박·요식·건설업. X5·5시리즈·7시리즈 선호. 가격보다 AS·관계 중시. 법인 구매 가능.</div>
+      <div style="margin-top:8px;display:flex;gap:4px;flex-wrap:wrap">
+        <span class="badge badge-gold">재구매 잠재</span>
+        <span class="badge badge-blue">X5 / 5시리즈</span>
+      </div>
+    </div>
+    <div class="persona-card">
+      <div class="persona-avatar" style="background:rgba(61,171,122,0.1)">🏥</div>
+      <div class="persona-name">영동권 전문직</div>
+      <div class="persona-sub">35~45세 · 리스/할부</div>
+      <div class="persona-body">의사·치과·약사·변호사. 월 리스료 예산 계획. MINI·3시리즈·4시리즈 선호. 콘텐츠 소비 많음.</div>
+      <div style="margin-top:8px;display:flex;gap:4px;flex-wrap:wrap">
+        <span class="badge badge-green">리스 선호</span>
+        <span class="badge badge-blue">MINI / 4시리즈</span>
+      </div>
+    </div>
+    <div class="persona-card">
+      <div class="persona-avatar" style="background:rgba(201,168,76,0.1)">🌊</div>
+      <div class="persona-name">수도권 세컨드카</div>
+      <div class="persona-sub">30~50대 · 현금/렌트</div>
+      <div class="persona-body">강릉 별장·세컨드하우스 보유. 드라이브용 세컨드카. MINI·X3·컨버터블 선호.</div>
+      <div style="margin-top:8px;display:flex;gap:4px;flex-wrap:wrap">
+        <span class="badge badge-gold">세컨드카</span>
+        <span class="badge badge-blue">MINI / X3</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════ ACTION ═══════════════ -->
+<div id="page-action" class="page">
+<div class="container">
+  <div class="hero" style="padding-bottom:24px">
+    <div class="hero-eyebrow">Daily Execution</div>
+    <h1 class="hero-title" style="font-size:clamp(22px,3vw,32px)">오늘의 액션 <em>플랜</em></h1>
+    <p class="hero-desc" style="font-size:13px">콘텐츠보다 문자가 먼저입니다. 파이프라인을 닫는 게 먼저, 새 고객은 그 다음.</p>
+  </div>
+
+  <div class="sec-title">지금 즉시 — 파이프라인 재접촉</div>
+  <div class="card" id="action-tasks">
+    <div class="task-item">
+      <div class="task-cb" onclick="toggleTask(this)"></div>
+      <div class="task-content">
+        <div class="task-name">미완결 고객 명단 꺼내기</div>
+        <div class="task-desc">최근 6개월 내 상담 후 계약 미완결 고객 리스트. 이분들이 오늘 1순위 타깃. 전화·문자 목록 정리.</div>
+        <div class="task-meta"><span class="time-pill">30분</span><span class="badge badge-red">지금 즉시</span></div>
+      </div>
+    </div>
+    <div class="task-item">
+      <div class="task-cb" onclick="toggleTask(this)"></div>
+      <div class="task-content">
+        <div class="task-name">파이프라인 상위 5명 문자 발송</div>
+        <div class="task-desc">'문자 템플릿' 탭의 버전 A·B·C를 각각 다른 분께 보내세요. 3명 중 1명 반응 = 오늘 상담 1건.</div>
+        <div class="task-meta"><span class="time-pill">15분</span><span class="badge badge-red">지금 즉시</span></div>
+      </div>
+    </div>
+    <div class="task-item">
+      <div class="task-cb" onclick="toggleTask(this)"></div>
+      <div class="task-content">
+        <div class="task-name">전시장 30초 영상 1개 촬영 → 네이버 클립 업로드</div>
+        <div class="task-desc">기획 필요 없습니다. 지금 차 앞에 서서 "오늘 입고된 차 보여드릴게요" 한 마디면 됩니다. 흔들려도 됩니다. 퀄리티 기준 없애세요.</div>
+        <div class="task-meta"><span class="time-pill">20분</span><span class="badge badge-amber">오늘 중</span></div>
+      </div>
+    </div>
+    <div class="task-item">
+      <div class="task-cb" onclick="toggleTask(this)"></div>
+      <div class="task-content">
+        <div class="task-name">이번 주 출고 예정 고객 — 후기 동의 미리 받기</div>
+        <div class="task-desc">"출고 당일 사진 찍어드리고 블로그에 올려도 될까요?" 지금 연락해서 동의를 받으세요. 이 콘텐츠 하나가 향후 6개월 가장 강력한 신뢰 자산.</div>
+        <div class="task-meta"><span class="time-pill">10분</span><span class="badge badge-amber">오늘 중</span></div>
+      </div>
+    </div>
+    <div class="task-item">
+      <div class="task-cb" onclick="toggleTask(this)"></div>
+      <div class="task-content">
+        <div class="task-name">기존 구매 고객 1명 안부 연락</div>
+        <div class="task-desc">구매 후 6개월~2년 된 고객에게 판매 목적 없이 안부 연락. "차 타시면서 불편한 거 없으세요?" 한 마디. 재구매 타이밍 탐색 + 지인 소개 씨앗.</div>
+        <div class="task-meta"><span class="time-pill">10분</span><span class="badge badge-blue">오늘 중</span></div>
+      </div>
+    </div>
+    <div class="task-item">
+      <div class="task-cb" onclick="toggleTask(this)"></div>
+      <div class="task-content">
+        <div class="task-name">"어떻게 알고 오셨어요?" 오늘부터 모든 상담에 적용</div>
+        <div class="task-desc">이 한 마디가 4주 후 마케팅 ROI를 판단하게 해줍니다. 메모장에라도 유입 경로 기록 시작. 블로그/추천/검색 여부 체크.</div>
+        <div class="task-meta"><span class="time-pill">0분 (습관)</span><span class="badge badge-gold">즉시 시작</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box info-gold">콘텐츠 마케팅은 장기전이 맞습니다. 하지만 파이프라인 재접촉은 오늘 전화 한 통으로 오늘 상담이 잡힙니다. 두 가지를 병행하되, 순서는 항상 파이프라인 먼저입니다.</div>
+
+  <div class="sec-title">1주차 일별 플랜</div>
+  <div class="week-row">
+    <div class="wday"><div class="wday-l">월</div><div class="wday-b" style="background:#3b8be8"></div></div>
+    <div class="wday"><div class="wday-l">화</div><div class="wday-b" style="background:#3dab7a"></div></div>
+    <div class="wday"><div class="wday-l">수</div><div class="wday-b" style="background:#e09855"></div></div>
+    <div class="wday"><div class="wday-l">목</div><div class="wday-b" style="background:#534AB7"></div></div>
+    <div class="wday"><div class="wday-l">금</div><div class="wday-b" style="background:#c9a84c"></div></div>
+    <div class="wday"><div class="wday-l">토</div><div class="wday-b" style="background:#444"></div></div>
+    <div class="wday"><div class="wday-l">일</div><div class="wday-b" style="background:#333"></div></div>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><div style="width:8px;height:8px;border-radius:50%;background:#3b8be8"></div><span class="card-title" style="margin:0">월 — 파이프라인 재접촉</span></div>
+      <div class="kv"><span class="kv-k">오전 30분</span><span class="kv-v">상담 미완결 고객 명단 정리</span></div>
+      <div class="kv"><span class="kv-k">오전 중</span><span class="kv-v">상위 5명 개인화 문자 발송</span></div>
+      <div class="kv"><span class="kv-k">오후</span><span class="kv-v">반응 고객 즉시 전화 상담</span></div>
+      <div class="kv"><span class="kv-k">저녁 10분</span><span class="kv-v">문자 발송/응답 수 기록</span></div>
+    </div>
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><div style="width:8px;height:8px;border-radius:50%;background:#3dab7a"></div><span class="card-title" style="margin:0">화 — 첫 콘텐츠 발행</span></div>
+      <div class="kv"><span class="kv-k">소재</span><span class="kv-v">최근 출고 or 가장 많이 받은 질문</span></div>
+      <div class="kv"><span class="kv-k">형식</span><span class="kv-v">블로그 500자 + 사진 3장 (완성도보다 발행)</span></div>
+      <div class="kv"><span class="kv-k">제목</span><span class="kv-v">"강릉 [모델] 출고 — 오늘 있었던 일"</span></div>
+      <div class="kv"><span class="kv-k">발행 후</span><span class="kv-v">개인 SNS 스토리 링크 공유</span></div>
+    </div>
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><div style="width:8px;height:8px;border-radius:50%;background:#e09855"></div><span class="card-title" style="margin:0">수 — 기존 고객 관계 재활성화</span></div>
+      <div class="kv"><span class="kv-k">대상</span><span class="kv-v">구매 후 6개월~2년 고객</span></div>
+      <div class="kv"><span class="kv-k">명목</span><span class="kv-v">점검 시즌 안내 or 신차 소식</span></div>
+      <div class="kv"><span class="kv-k">목표</span><span class="kv-v">재구매 타이밍 탐색 + 지인 소개</span></div>
+      <div class="kv"><span class="kv-k">주의</span><span class="kv-v">판매 목적 티 내지 말 것</span></div>
+    </div>
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><div style="width:8px;height:8px;border-radius:50%;background:#c9a84c"></div><span class="card-title" style="margin:0">금 — 주간 결산</span></div>
+      <div class="kv"><span class="kv-k">15분 결산</span><span class="kv-v">문자 발송 / 응답 / 상담 / 계약 기록</span></div>
+      <div class="kv"><span class="kv-k">콘텐츠</span><span class="kv-v">조회수·댓글·저장 확인</span></div>
+      <div class="kv"><span class="kv-k">다음 주</span><span class="kv-v">가장 반응 좋은 것 → 다음 주 첫 콘텐츠</span></div>
+      <div class="kv"><span class="kv-k">토·일</span><span class="kv-v">콘텐츠 쉬되 문의는 30분 내 응답 필수</span></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════ CONTENT ═══════════════ -->
+<div id="page-content" class="page">
+<div class="container">
+  <div class="hero" style="padding-bottom:24px">
+    <div class="hero-eyebrow">Content Formats</div>
+    <h1 class="hero-title" style="font-size:clamp(22px,3vw,32px)">콘텐츠 포맷 <em>가이드</em></h1>
+    <p class="hero-desc" style="font-size:13px">블로그 6단 구성부터 60초 쇼츠 대본, 리스·할부 비교 글까지. 복사해서 바로 쓰세요.</p>
+  </div>
+
+  <div class="step-nav" id="content-nav">
+    <button class="step-btn active" onclick="goContentTab(0)">블로그 6단</button>
+    <button class="step-btn" onclick="goContentTab(1)">60초 쇼츠</button>
+    <button class="step-btn" onclick="goContentTab(2)">금융 비교 글</button>
+  </div>
+
+  <!-- 블로그 -->
+  <div id="ct-0" class="step-panel active">
+    <div class="prog" id="blog-prog">
+      <div class="prog-seg on"></div><div class="prog-seg"></div><div class="prog-seg"></div>
+      <div class="prog-seg"></div><div class="prog-seg"></div><div class="prog-seg"></div>
+    </div>
+    <div class="step-nav" id="blog-step-nav">
+      <button class="step-btn active" onclick="goBlogStep(0)">① 후킹</button>
+      <button class="step-btn" onclick="goBlogStep(1)">② 스토리</button>
+      <button class="step-btn" onclick="goBlogStep(2)">③ 모델</button>
+      <button class="step-btn" onclick="goBlogStep(3)">④ 구매과정</button>
+      <button class="step-btn" onclick="goBlogStep(4)">⑤ 출고감성</button>
+      <button class="step-btn" onclick="goBlogStep(5)">⑥ CTA</button>
+    </div>
+    <div id="blog-steps">
+      <div class="step-panel active" data-bs="0">
+        <div class="card">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+            <span style="font-size:24px;font-weight:700;color:var(--blue);opacity:.4">01</span>
+            <div><div class="card-title">후킹 헤드라인 + 썸네일</div><div style="font-size:11px;color:var(--text3)">검색 클릭을 만드는 첫 3초</div></div>
+          </div>
+          <div class="info-box info-blue">제목 앞 10자 안에 "강릉 BMW" 또는 "강원 MINI" 키워드가 반드시 들어가야 합니다.</div>
+          <div class="script-block">
+            <div class="script-label">제목 공식 — [지역/상황] + [모델] + [감정·결과]</div>
+            <div class="script-text">예시 A. "강릉에서 BMW X5 뽑은 이유, 서울 안 간 게 잘한 선택이었습니다"
+예시 B. "MINI 컨트리맨 리스 월 89만원, 강릉 치과원장님의 선택"
+예시 C. "3년 타던 5시리즈에서 7시리즈로 — 강릉 사업주의 재구매 후기"</div>
+            <button class="copy-btn" onclick="copyText(this,'예시 A. 강릉에서 BMW X5 뽑은 이유, 서울 안 간 게 잘한 선택이었습니다\n예시 B. MINI 컨트리맨 리스 월 89만원, 강릉 치과원장님의 선택')">복사</button>
+          </div>
+          <div class="script-block">
+            <div class="script-label">썸네일 필수 요소</div>
+            <div class="script-text">· 차량 + 강릉 랜드마크 배경 (경포호, 정동진, 안목해변)
+· 담당자 or 고객 얼굴 (동의 후) — 신뢰도 3배 상승
+· 텍스트 오버레이: 모델명 + 핵심 키워드 2개 이내</div>
+          </div>
+        </div>
+      </div>
+      <div class="step-panel" data-bs="1">
+        <div class="card">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+            <span style="font-size:24px;font-weight:700;color:var(--blue);opacity:.4">02</span>
+            <div><div class="card-title">공감 스토리 도입부</div><div style="font-size:11px;color:var(--text3)">"나 얘기하는 거잖아"를 느끼는 순간</div></div>
+          </div>
+          <div class="info-box info-red">절대 금지 — "안녕하세요! 오늘은 BMW X5를 소개해 드리겠습니다." 이렇게 시작하면 3초 내 이탈.</div>
+          <div class="script-block">
+            <div class="script-label">X5 출고 후기 도입부 예시 — 복사해서 변형하세요</div>
+            <div class="script-text">솔직히 말하면, 서울 가서 살까 진짜 고민했어요.
+
+강릉에 BMW 전시장이 생긴 건 알았는데, 어차피 큰 거 살 때는 서울이나 원주 가야 하는 거 아닐까 싶었거든요. AS도 걱정됐고, 혹시 가격 차이 있는 건 아닐까 하는 의심도 있었고요.
+
+그런데 지인 소개로 하슬라 전시장 들어가 봤다가, 그냥 여기서 계약했습니다.</div>
+            <button class="copy-btn" onclick="copyText(this,'솔직히 말하면, 서울 가서 살까 진짜 고민했어요.\n\n강릉에 BMW 전시장이 생긴 건 알았는데, 어차피 큰 거 살 때는 서울이나 원주 가야 하는 거 아닐까 싶었거든요. AS도 걱정됐고, 혹시 가격 차이 있는 건 아닐까 하는 의심도 있었고요.\n\n그런데 지인 소개로 하슬라 전시장 들어가 봤다가, 그냥 여기서 계약했습니다.')">복사</button>
+          </div>
+          <div class="info-box info-blue">구조: 걱정 → 반전 → 해소. 3단락 안에 독자가 다음 내용을 기대하게 만드세요.</div>
+        </div>
+      </div>
+      <div class="step-panel" data-bs="2">
+        <div class="card">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+            <span style="font-size:24px;font-weight:700;color:var(--blue);opacity:.4">03</span>
+            <div><div class="card-title">모델 선택 이유</div><div style="font-size:11px;color:var(--text3)">스펙 나열 X, "왜 이 차여야 했나" 중심</div></div>
+          </div>
+          <div class="script-block">
+            <div class="script-label">강릉 라이프스타일 연결 예시</div>
+            <div class="script-text">X5를 고른 결정적 이유는 강릉 겨울이었어요.
+
+경포에서 안목까지, 11월부터 3월까지는 도로 사정이 예측 불가거든요. xDrive 사륜구동에 X5 차고까지 더하니까, 해안도로나 산쪽 코스 갈 때 마음이 달라요.
+
+7인승 선택한 건 가족 때문이기도 하고, 사업 파트너 모시고 다닐 때 뒷좌석 공간이 중요했어요. 5시리즈 탈 때는 항상 조금 미안했거든요.</div>
+            <button class="copy-btn" onclick="copyText(this,'X5를 고른 결정적 이유는 강릉 겨울이었어요.\n\n경포에서 안목까지, 11월부터 3월까지는 도로 사정이 예측 불가거든요.')">복사</button>
+          </div>
+          <div class="info-box info-gold">스펙(마력, 토크)은 1~2줄만. 나머지는 전부 "내 생활에서 어떻게 느껴지는가"로 서술하세요.</div>
+        </div>
+      </div>
+      <div class="step-panel" data-bs="3">
+        <div class="card">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+            <span style="font-size:24px;font-weight:700;color:var(--blue);opacity:.4">04</span>
+            <div><div class="card-title">구매 과정 투명 공개</div><div style="font-size:11px;color:var(--text3)">금융 구조를 솔직하게 — 신뢰의 핵심</div></div>
+          </div>
+          <div class="script-block">
+            <div class="script-label">할부 선택 고객 서술 예시</div>
+            <div class="script-text">저는 60개월 할부로 진행했어요. 리스도 검토했는데, 매니저님이 두 가지를 꼼꼼히 비교해 주시더라고요.
+
+리스는 초기 비용이 적고 월 비용도 낮은데, 계약 기간 내 주행거리 제한이 있고 차량이 내 소유가 아닌 게 좀 걸렸어요. 저처럼 출장이 많고 차를 오래 가져가는 스타일이면 할부가 낫다고 하시더라고요.
+
+구체적인 월 납입금은 옵션·선수금 조건에 따라 많이 달라지니까, 직접 상담받아보시는 게 제일 정확해요.</div>
+            <button class="copy-btn" onclick="copyText(this,'저는 60개월 할부로 진행했어요. 리스도 검토했는데, 매니저님이 두 가지를 꼼꼼히 비교해 주시더라고요.')">복사</button>
+          </div>
+          <div class="info-box info-blue">월 납입 금액은 "상담 시 정확한 시뮬레이션 가능"으로 처리. 구체적 숫자 공개 시 정책 변경 리스크.</div>
+        </div>
+      </div>
+      <div class="step-panel" data-bs="4">
+        <div class="card">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+            <span style="font-size:24px;font-weight:700;color:var(--blue);opacity:.4">05</span>
+            <div><div class="card-title">출고 당일 + 첫 드라이브 감성</div><div style="font-size:11px;color:var(--text3)">사진 콘텐츠의 황금 구간</div></div>
+          </div>
+          <div class="script-block">
+            <div class="script-label">출고 감성 서술 예시</div>
+            <div class="script-text">출고 당일, 전시장 정문에서 매니저님이 직접 차 앞에서 사진 찍어주셨어요. 그 순간이 생각보다 기분 좋더라고요. 작은 건데 기억에 남아요.
+
+바로 경포대 쪽으로 달렸습니다. 강릉 바다 옆에서 X5 타는 게 이렇게 다를 줄은 몰랐어요. 하늘이 열린 느낌? 서울 막히는 데서 탈 때랑은 완전히 다른 차예요.
+
+아직 한 달밖에 안 됐지만 후회 없습니다.</div>
+            <button class="copy-btn" onclick="copyText(this,'출고 당일, 전시장 정문에서 매니저님이 직접 차 앞에서 사진 찍어주셨어요.')">복사</button>
+          </div>
+          <div class="script-block">
+            <div class="script-label">필수 사진 컷 리스트</div>
+            <div class="script-text">① 전시장 외관 + 차량 (하슬라 간판 노출)
+② 담당자와 악수 or 키 전달 컷
+③ 강릉 랜드마크 배경 주행·주차 컷 (경포, 안목, 정동진)
+④ 실내 스티어링·계기판 클로즈업
+⑤ 석양 or 야경 감성 컷 1장</div>
+          </div>
+        </div>
+      </div>
+      <div class="step-panel" data-bs="5">
+        <div class="card">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+            <span style="font-size:24px;font-weight:700;color:var(--blue);opacity:.4">06</span>
+            <div><div class="card-title">CTA — 상담 예약 유도</div><div style="font-size:11px;color:var(--text3)">읽은 사람을 행동하게 만드는 마지막 문장</div></div>
+          </div>
+          <div class="script-block">
+            <div class="script-label">CTA 버전 A — 부드러운 초대</div>
+            <div class="script-text">강릉 혹은 영동 지역에서 BMW·MINI 구매를 고민 중이시라면, 부담 없이 한번 들러보세요. 커피 한 잔 대접하면서 이야기 나눌게요.</div>
+            <button class="copy-btn" onclick="copyText(this,'강릉 혹은 영동 지역에서 BMW·MINI 구매를 고민 중이시라면, 부담 없이 한번 들러보세요. 커피 한 잔 대접하면서 이야기 나눌게요.')">복사</button>
+          </div>
+          <div class="script-block">
+            <div class="script-label">CTA 버전 B — 정보형</div>
+            <div class="script-text">리스·할부·장기렌트 중 어떤 방식이 나에게 유리한지 궁금하시면, 아래 링크로 방문 예약 주시면 꼼꼼하게 비교 설명해 드립니다.</div>
+            <button class="copy-btn" onclick="copyText(this,'리스·할부·장기렌트 중 어떤 방식이 나에게 유리한지 궁금하시면, 아래 링크로 방문 예약 주시면 꼼꼼하게 비교 설명해 드립니다.')">복사</button>
+          </div>
+          <div class="info-box info-gold">CTA는 단 하나만. "전화하거나 방문하거나 예약하거나…" 선택지가 많으면 아무것도 안 합니다.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 쇼츠 대본 -->
+  <div id="ct-1" class="step-panel">
+    <div class="step-nav">
+      <button class="step-btn active" onclick="goShortsScript(0, this)">강릉에서 BMW 사는 이유</button>
+      <button class="step-btn" onclick="goShortsScript(1, this)">MINI 리스 1분 설명</button>
+      <button class="step-btn" onclick="goShortsScript(2, this)">전시장 첫 방문 가이드</button>
+    </div>
+    <div id="ss-0">
+      <div class="card">
+        <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap">
+          <span class="badge badge-red">60초 감성형</span>
+          <span style="font-size:13px;font-weight:500">강릉에서 BMW 사는 사람들</span>
+        </div>
+        <div class="script-block"><div class="script-label">0–3초 — 후크</div><div class="script-text">"강릉에서 BMW 사면 뭐가 다를까요?"</div><div style="font-size:11px;color:var(--text3);margin-top:6px;font-style:italic">컷: 강릉 바다 + BMW 사이드 뷰. 1초 안에 차가 나와야 합니다.</div><button class="copy-btn" onclick="copyText(this,'강릉에서 BMW 사면 뭐가 다를까요?')">복사</button></div>
+        <div class="script-block"><div class="script-label">3–15초 — 공감</div><div class="script-text">"서울 올라가서 살까 진짜 고민했어요. 강릉에 전시장이 있는 건 알았는데, AS 걱정도 있고 가격 차이 있을 것 같고…"</div><button class="copy-btn" onclick="copyText(this,'서울 올라가서 살까 진짜 고민했어요. 강릉에 전시장이 있는 건 알았는데, AS 걱정도 있고 가격 차이 있을 것 같고…')">복사</button></div>
+        <div class="script-block"><div class="script-label">15–35초 — 반전·가치</div><div class="script-text">"근데요, 전시장 들어오는 순간 달라요. 갤러리처럼 되어 있고, 상담할 때 리스·할부 구조를 처음부터 다 설명해 줘요. 숨기는 게 없어요. 강원도 전 지역 AS 출동도 되고, 경포 시승 코스까지 짜줘요."</div><button class="copy-btn" onclick="copyText(this,'근데요, 전시장 들어오는 순간 달라요. 갤러리처럼 되어 있고, 상담할 때 리스·할부 구조를 처음부터 다 설명해 줘요. 숨기는 게 없어요.')">복사</button></div>
+        <div class="script-block"><div class="script-label">35–52초 — 강릉 감성</div><div class="script-text">"강릉 바다 옆에서 BMW 타는 거, 서울 막히는 데서 타는 거랑은 확실히 달라요."</div><div style="font-size:11px;color:var(--text3);margin-top:6px;font-style:italic">컷: 석양 안목해변 드라이브. 가장 예쁜 B-roll 여기에 배치.</div></div>
+        <div class="script-block"><div class="script-label">52–60초 — CTA</div><div class="script-text">"시승 예약은 링크에서, 커피 한 잔 대접할게요."</div><button class="copy-btn" onclick="copyText(this,'강릉에서 BMW 사면 뭐가 다를까요?\n\n서울 올라가서 살까 진짜 고민했어요. 강릉에 전시장이 있는 건 알았는데, AS 걱정도 있고 가격 차이 있을 것 같고…\n\n근데요, 전시장 들어오는 순간 달라요. 갤러리처럼 되어 있고, 상담할 때 리스·할부 구조를 처음부터 다 설명해 줘요. 숨기는 게 없어요. 강원도 전 지역 AS 출동도 되고, 경포 시승 코스까지 짜줘요.\n\n강릉 바다 옆에서 BMW 타는 거, 서울 막히는 데서 타는 거랑은 확실히 달라요.\n\n시승 예약은 링크에서, 커피 한 잔 대접할게요.')">전체 복사</button></div>
+      </div>
+    </div>
+    <div id="ss-1" style="display:none">
+      <div class="card">
+        <div style="display:flex;gap:8px;margin-bottom:14px"><span class="badge badge-blue">60초 정보형</span><span style="font-size:13px;font-weight:500">MINI 리스, 이렇게 하면 월 89만원입니다</span></div>
+        <div class="script-block"><div class="script-label">0–4초 — 숫자 후크</div><div class="script-text">"MINI 쿠퍼, 월 89만원에 탈 수 있어요."</div><div style="font-size:11px;color:var(--text3);margin-top:6px;font-style:italic">이 숫자가 화면 절반을 차지해야 합니다.</div></div>
+        <div class="script-block"><div class="script-label">4–20초 — 구조 설명</div><div class="script-text">"리스 상품이에요. 선수금 없이, 취등록세 없이, 48개월 기준이고요. 내 차 아니라 불안하다 하시는 분 계시죠? 그분들께는 맞을 수도 있고 아닐 수도 있어요."</div></div>
+        <div class="script-block"><div class="script-label">20–42초 — 맞는 사람</div><div class="script-text">"리스가 딱 맞는 경우는요. 직장인이거나, 사업자인데 비용 처리 원하거나, 3~4년마다 차 바꾸고 싶거나, 초기 목돈 없는 분들이에요."</div></div>
+        <div class="script-block"><div class="script-label">42–60초 — CTA</div><div class="script-text">"정확한 월 납입금은 선수금·잔존가치·주행거리 조건에 따라 달라지니까, 저한테 직접 시뮬레이션 받아보세요. 10분이면 돼요."</div><button class="copy-btn" onclick="copyText(this,'MINI 쿠퍼, 월 89만원에 탈 수 있어요.\n\n리스 상품이에요. 선수금 없이, 취등록세 없이, 48개월 기준이고요.\n\n리스가 딱 맞는 경우는 직장인이거나, 사업자인데 비용 처리 원하거나, 3~4년마다 차 바꾸고 싶거나, 초기 목돈 없는 분들이에요.\n\n정확한 월 납입금은 저한테 직접 시뮬레이션 받아보세요. 10분이면 돼요.')">전체 복사</button></div>
+      </div>
+    </div>
+    <div id="ss-2" style="display:none">
+      <div class="card">
+        <div style="display:flex;gap:8px;margin-bottom:14px"><span class="badge badge-green">60초 브이로그형</span><span style="font-size:13px;font-weight:500">강릉 BMW 전시장, 처음 가면 이렇게 하세요</span></div>
+        <div class="script-block"><div class="script-label">0–3초 — 장소 공개</div><div class="script-text">"강릉에 이런 전시장이 있는 거 몰랐죠?"</div></div>
+        <div class="script-block"><div class="script-label">3–25초 — 투어</div><div class="script-text">"1층은 BMW 전시 공간이고요, MINI는 따로 존이 나뉘어 있어요. 여기 앉아서 상담받으면 돼요. 커피도 주시고요. 시승은 경포 쪽으로 직접 코스 짜줘요."</div></div>
+        <div class="script-block"><div class="script-label">25–48초 — 방문 팁</div><div class="script-text">"처음 오실 때 팁은요. 사고 싶은 모델 미리 하나만 정해오고요, 구매 방식 모르면 그냥 물어보세요. 다 설명해줘요. 부담 없이 오셔도 돼요."</div></div>
+        <div class="script-block"><div class="script-label">48–60초 — CTA</div><div class="script-text">"방문 전에 링크로 미리 예약하시면 대기 없이 바로 상담 가능해요."</div><button class="copy-btn" onclick="copyText(this,'강릉에 이런 전시장이 있는 거 몰랐죠?\n\n1층은 BMW 전시 공간이고요, MINI는 따로 존이 나뉘어 있어요. 시승은 경포 쪽으로 직접 코스 짜줘요.\n\n처음 오실 때 팁은요. 사고 싶은 모델 미리 하나만 정해오고요, 구매 방식 모르면 그냥 물어보세요. 부담 없이 오셔도 돼요.\n\n방문 전에 링크로 미리 예약하시면 대기 없이 바로 상담 가능해요.')">전체 복사</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 금융 비교 글 -->
+  <div id="ct-2" class="step-panel">
+    <div class="card">
+      <div class="card-title" style="margin-bottom:8px">제목 공식</div>
+      <div class="script-block"><div class="script-text">"BMW [모델] 리스 vs 할부 vs 장기렌트 — 강릉 [직종·상황] 완전 비교 2026"</div><button class="copy-btn" onclick="copyText(this,'BMW X3 리스 vs 할부 vs 장기렌트 — 강릉 직장인·사업자 완전 비교 2026')">복사</button></div>
+    </div>
+    <div class="grid3" style="margin-bottom:12px">
+      <div class="card" style="text-align:center">
+        <div class="card-title">할부</div>
+        <div style="font-size:18px;font-weight:600;color:var(--blue);margin:8px 0">월 120~160만</div>
+        <div style="font-size:11px;color:var(--text2);line-height:1.6">소유권 즉시 이전<br>중도 상환 가능<br>취등록세 발생</div>
+      </div>
+      <div class="card" style="text-align:center;border-color:var(--gold)">
+        <div style="text-align:center;margin-bottom:6px"><span class="badge badge-gold">전문직 추천</span></div>
+        <div class="card-title">리스</div>
+        <div style="font-size:18px;font-weight:600;color:var(--gold);margin:8px 0">월 80~100만</div>
+        <div style="font-size:11px;color:var(--text2);line-height:1.6">사업자 비용 처리<br>취등록세 없음<br>주행거리 제한 있음</div>
+      </div>
+      <div class="card" style="text-align:center">
+        <div class="card-title">장기렌트</div>
+        <div style="font-size:18px;font-weight:600;color:var(--green);margin:8px 0">월 90~120만</div>
+        <div style="font-size:11px;color:var(--text2);line-height:1.6">보험·정비 포함<br>법인·개인 모두 가능<br>만기 반납 or 구매</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title" style="margin-bottom:10px">도입부 예시 — 공감형</div>
+      <div class="script-block">
+        <div class="script-text">BMW를 사고 싶은데, 리스가 나을지 할부가 나을지 검색해봐도 설명이 너무 어렵죠.
+
+저도 처음엔 그랬어요. 그래서 강릉 하슬라 매니저님한테 직접 물어봤고, 1시간짜리 설명을 들은 내용을 여기 최대한 쉽게 정리해봤습니다.
+
+결론부터 말하면, 정답은 없어요. 내 상황에 맞는 게 맞는 거예요.</div>
+        <button class="copy-btn" onclick="copyText(this,'BMW를 사고 싶은데, 리스가 나을지 할부가 나을지 검색해봐도 설명이 너무 어렵죠.\n\n저도 처음엔 그랬어요. 그래서 강릉 하슬라 매니저님한테 직접 물어봤고, 1시간짜리 설명을 들은 내용을 여기 최대한 쉽게 정리해봤습니다.\n\n결론부터 말하면, 정답은 없어요. 내 상황에 맞는 게 맞는 거예요.')">복사</button>
+      </div>
+    </div>
+    <div class="info-box info-blue">"BMW 리스 할부 비교"로 검색하는 사람은 이미 구매 의향이 높습니다. 이 글로 들어온 독자가 글 하단 CTA를 통해 상담 예약으로 이어지는 구조를 만드세요.</div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════ SCRIPTS ═══════════════ -->
+<div id="page-scripts" class="page">
+<div class="container">
+  <div class="hero" style="padding-bottom:24px">
+    <div class="hero-eyebrow">Message Templates</div>
+    <h1 class="hero-title" style="font-size:clamp(22px,3vw,32px)">바로 쓸 <em>문자 템플릿</em></h1>
+    <p class="hero-desc" style="font-size:13px">복사 버튼 → 이름·모델 교체 → 발송. 3초면 됩니다. 응답률 비교를 위해 A·B·C를 각각 다른 분께 보내보세요.</p>
+  </div>
+
+  <div class="sec-title">미완결 고객 재접촉</div>
+  <div class="script-block">
+    <div class="script-label">버전 A — 조건 변경 명목</div>
+    <div class="script-text">안녕하세요, 하슬라 BMW·MINI [이름] 매니저입니다.
+지난번 [모델] 상담 이후로 연락드립니다.
+이번 달 금융 조건이 바뀌어서, 혹시 아직 검토 중이시라면 한번 더 말씀드리고 싶어서요.
+부담 없이 문자로 연락 주셔도 됩니다 :)</div>
+    <button class="copy-btn" onclick="copyText(this,'안녕하세요, 하슬라 BMW·MINI [이름] 매니저입니다.\n지난번 [모델] 상담 이후로 연락드립니다.\n이번 달 금융 조건이 바뀌어서, 혹시 아직 검토 중이시라면 한번 더 말씀드리고 싶어서요.\n부담 없이 문자로 연락 주셔도 됩니다 :)')">복사</button>
+  </div>
+  <div class="script-block">
+    <div class="script-label">버전 B — 신차 입고 명목</div>
+    <div class="script-text">안녕하세요 :) 하슬라 [이름] 매니저입니다.
+[모델] 신규 입고 소식 있어서 연락드렸어요.
+색상·옵션 직접 보시면 느낌 다르거든요, 시간 되실 때 한번 들러보시겠어요?
+강릉 오시는 길에 커피 한잔 대접할게요.</div>
+    <button class="copy-btn" onclick="copyText(this,'안녕하세요 :) 하슬라 [이름] 매니저입니다.\n[모델] 신규 입고 소식 있어서 연락드렸어요.\n색상·옵션 직접 보시면 느낌 다르거든요, 시간 되실 때 한번 들러보시겠어요?\n강릉 오시는 길에 커피 한잔 대접할게요.')">복사</button>
+  </div>
+  <div class="script-block">
+    <div class="script-label">버전 C — 단도직입</div>
+    <div class="script-text">안녕하세요, [이름] 매니저입니다.
+지난번 상담 이후 어떻게 결정하셨나요?
+아직 고민 중이시면 제가 도움드릴 수 있는 게 있을 것 같아서요.
+5분만 통화 가능하신가요?</div>
+    <button class="copy-btn" onclick="copyText(this,'안녕하세요, [이름] 매니저입니다.\n지난번 상담 이후 어떻게 결정하셨나요?\n아직 고민 중이시면 제가 도움드릴 수 있는 게 있을 것 같아서요.\n5분만 통화 가능하신가요?')">복사</button>
+  </div>
+  <div class="info-box info-gold">3가지를 각각 다른 고객에게 테스트하세요. 1~2주 후 응답률 비교 → 어떤 톤이 맞는지 데이터가 됩니다.</div>
+
+  <div class="sec-title">기존 구매 고객 — 재구매·소개 유도</div>
+  <div class="script-block">
+    <div class="script-label">재구매 타이밍 탐색</div>
+    <div class="script-text">안녕하세요 [고객명]님, [이름] 매니저입니다.
+차 타시면서 불편한 거 없으신지 문득 생각나서 연락드렸어요.
+곧 [모델] 신형 나온다는 소식도 있어서, 혹시 관심 있으시면 미리 말씀 드리려고요.</div>
+    <button class="copy-btn" onclick="copyText(this,'안녕하세요 [고객명]님, [이름] 매니저입니다.\n차 타시면서 불편한 거 없으신지 문득 생각나서 연락드렸어요.\n곧 [모델] 신형 나온다는 소식도 있어서, 혹시 관심 있으시면 미리 말씀 드리려고요.')">복사</button>
+  </div>
+  <div class="script-block">
+    <div class="script-label">지인 소개 요청 — 자연스러운 버전</div>
+    <div class="script-text">안녕하세요 [고객명]님 :)
+타시면서 만족도는 어떠세요?
+혹시 주변에 BMW·MINI 관심 있는 분 계시면 저 소개시켜 주세요. 정말 잘 모실게요.
+소개 주시는 분들은 항상 더 신경 써드리고 있습니다.</div>
+    <button class="copy-btn" onclick="copyText(this,'안녕하세요 [고객명]님 :)\n타시면서 만족도는 어떠세요?\n혹시 주변에 BMW·MINI 관심 있는 분 계시면 저 소개시켜 주세요. 정말 잘 모실게요.\n소개 주시는 분들은 항상 더 신경 써드리고 있습니다.')">복사</button>
+  </div>
+
+  <div class="sec-title">인바운드 문의 — 첫 응대</div>
+  <div class="script-block">
+    <div class="script-label">블로그·영상 보고 문의 온 고객 — 30분 내 답장</div>
+    <div class="script-text">안녕하세요! 블로그 보고 연락 주셨군요, 감사합니다 :)
+[이름] 매니저입니다.
+궁금하신 게 있으시면 편하게 말씀해 주세요.
+전화 상담이 편하시면 번호 남겨 주시면 바로 연락드릴게요.
+방문 전에 미리 여쭤봐도 됩니다!</div>
+    <button class="copy-btn" onclick="copyText(this,'안녕하세요! 블로그 보고 연락 주셨군요, 감사합니다 :)\n[이름] 매니저입니다.\n궁금하신 게 있으시면 편하게 말씀해 주세요.\n전화 상담이 편하시면 번호 남겨 주시면 바로 연락드릴게요.\n방문 전에 미리 여쭤봐도 됩니다!')">복사</button>
+  </div>
+  <div class="info-box info-red">인바운드 응답 골든타임 30분. 1시간 초과 시 전환율 절반 이하. 문자 알림 설정 필수.</div>
+</div>
+</div>
+
+<!-- ═══════════════ STRATEGY ═══════════════ -->
+<div id="page-strategy" class="page">
+<div class="container">
+  <div class="hero" style="padding-bottom:24px">
+    <div class="hero-eyebrow">Channel Strategy</div>
+    <h1 class="hero-title" style="font-size:clamp(22px,3vw,32px)">채널 전략 <em>& 키워드</em></h1>
+  </div>
+
+  <div class="sec-title">키워드 3단 전략</div>
+  <div class="kw-tier">
+    <div class="kw-head" style="background:var(--blue-dim);color:var(--blue)">
+      <span>1단계 — 지역 귀속형</span><span class="badge badge-blue">전환율 최고</span>
+    </div>
+    <div class="kw-body">
+      <div class="kw-row"><span class="kw-word">"강릉 BMW AS"</span><span class="kw-why">지역 구매자 1위 불안 해소. 전환 직결. 경쟁 콘텐츠 거의 없음.</span></div>
+      <div class="kw-row"><span class="kw-word">"강원도 BMW 출고"</span><span class="kw-why">이미 살 마음 있는 사람이 검색. 블루오션 키워드.</span></div>
+      <div class="kw-row"><span class="kw-word">"강릉 BMW 상담"</span><span class="kw-why">상담 예약 직전 단계. 클릭 = 구매 의향 최상단.</span></div>
+      <div class="kw-row"><span class="kw-word">"강릉 법인차 리스"</span><span class="kw-why">지역 사업자 직접 타깃. 고가망 구매층 핵심.</span></div>
+    </div>
+  </div>
+  <div class="kw-tier">
+    <div class="kw-head" style="background:var(--green-dim);color:var(--green)">
+      <span>2단계 — 라이프스타일 접점형</span><span class="badge badge-green">유입 중·전환 우수</span>
+    </div>
+    <div class="kw-body">
+      <div class="kw-row"><span class="kw-word">"강릉 드라이브 코스 차"</span><span class="kw-why">라이프스타일 검색자 유입. BMW 욕구 자극 후 자연 연결.</span></div>
+      <div class="kw-row"><span class="kv-word">"강릉 세컨드카 추천"</span><span class="kw-why">수도권 별장 보유자 타깃. 경쟁 없는 블루오션.</span></div>
+      <div class="kw-row"><span class="kw-word">"강릉 여름 차 추천"</span><span class="kw-why">여름 성수기 방문객 유입. MINI 컨버터블 연결.</span></div>
+    </div>
+  </div>
+  <div class="kw-tier">
+    <div class="kw-head" style="background:var(--amber-dim);color:var(--amber)">
+      <span>3단계 — 브랜드 정보형 (지역 무관)</span><span class="badge badge-amber">유입량 최고</span>
+    </div>
+    <div class="kw-body">
+      <div class="kw-row"><span class="kw-word">"BMW X3 리스 할부 비교"</span><span class="kw-why">전국 검색량 높음. 구매 결정 직전 탐색. 글 하단 강릉 CTA.</span></div>
+      <div class="kw-row"><span class="kw-word">"MINI 쿠퍼 월 납입금"</span><span class="kw-why">전국 유입 후 강릉·영동 거주자 필터링. 전환율 높음.</span></div>
+      <div class="kw-row"><span class="kw-word">"BMW 재구매 혜택"</span><span class="kw-why">기존 BMW 오너 타깃. 충성도 높은 고가망 고객.</span></div>
+    </div>
+  </div>
+
+  <div class="sec-title">연간 로드맵 — 4 Phase</div>
+  <div class="roadmap-phase">
+    <div class="phase-header" onclick="togglePhase(this)">
+      <div class="phase-marker" style="background:var(--blue)"></div>
+      <div class="phase-title">Phase 1 — 신뢰 구축기</div>
+      <div class="phase-period">1~3월</div>
+      <div class="phase-arrow">▾</div>
+    </div>
+    <div class="phase-body">
+      <div class="kv"><span class="kv-k">목표</span><span class="kv-v">"강릉 BMW·MINI = 하슬라" 채널 아이덴티티 확립</span></div>
+      <div class="kv"><span class="kv-k">핵심 콘텐츠</span><span class="kv-v">담당자 소개 릴스, 전시장 투어, 신차 소개 시리즈</span></div>
+      <div class="kv"><span class="kv-k">SEO 키워드</span><span class="kv-v">강릉 BMW / 강원 MINI 전시장 / 강릉 BMW 할부</span></div>
+      <div class="kv"><span class="kv-k">KPI</span><span class="kv-v">월 방문자 300명↑ / 상담 문의 월 5건↑</span></div>
+    </div>
+  </div>
+  <div class="roadmap-phase">
+    <div class="phase-header" onclick="togglePhase(this)">
+      <div class="phase-marker" style="background:var(--green)"></div>
+      <div class="phase-title">Phase 2 — 전환 유도기</div>
+      <div class="phase-period">4~6월</div>
+      <div class="phase-arrow">▾</div>
+    </div>
+    <div class="phase-body">
+      <div class="kv"><span class="kv-k">목표</span><span class="kv-v">시승 예약·상담 전환율 극대화, 출고 콘텐츠 누적</span></div>
+      <div class="kv"><span class="kv-k">핵심 콘텐츠</span><span class="kv-v">실구매 고객 인터뷰, 리스/할부 비교 가이드, 시승 브이로그</span></div>
+      <div class="kv"><span class="kv-k">특별 기획</span><span class="kv-v">봄 드라이브 시승 이벤트, 출고 고객 출사 이벤트</span></div>
+      <div class="kv"><span class="kv-k">KPI</span><span class="kv-v">월 시승 예약 8건↑ / 출고 후기 콘텐츠 월 2건↑</span></div>
+    </div>
+  </div>
+  <div class="roadmap-phase">
+    <div class="phase-header" onclick="togglePhase(this)">
+      <div class="phase-marker" style="background:var(--amber)"></div>
+      <div class="phase-title">Phase 3 — 관계 심화기</div>
+      <div class="phase-period">7~9월</div>
+      <div class="phase-arrow">▾</div>
+    </div>
+    <div class="phase-body">
+      <div class="kv"><span class="kv-k">목표</span><span class="kv-v">여름 강릉 방문객·수도권 고객 확보, 커뮤니티 형성</span></div>
+      <div class="kv"><span class="kv-k">핵심 콘텐츠</span><span class="kv-v">강릉 여름 드라이브, MINI 컨버터블 오픈 드라이브, 오너 밋업</span></div>
+      <div class="kv"><span class="kv-k">특별 기획</span><span class="kv-v">강릉 BMW 오너 드라이브 클럽 런칭 (오픈 기념월)</span></div>
+      <div class="kv"><span class="kv-k">KPI</span><span class="kv-v">수도권 신규 고객 비율 20%↑ / 오너 커뮤니티 30명↑</span></div>
+    </div>
+  </div>
+  <div class="roadmap-phase">
+    <div class="phase-header" onclick="togglePhase(this)">
+      <div class="phase-marker" style="background:var(--gold)"></div>
+      <div class="phase-title">Phase 4 — 충성 확보기</div>
+      <div class="phase-period">10~12월</div>
+      <div class="phase-arrow">▾</div>
+    </div>
+    <div class="phase-body">
+      <div class="kv"><span class="kv-k">목표</span><span class="kv-v">연말 구매 시즌 최대화, 재구매 락인, 내년 계획 설계</span></div>
+      <div class="kv"><span class="kv-k">핵심 콘텐츠</span><span class="kv-v">연말 특별 혜택, 재구매 스토리, 2027 신차 프리뷰</span></div>
+      <div class="kv"><span class="kv-k">특별 기획</span><span class="kv-v">기존 고객 연말 감사 이벤트, VIP 시승 파티</span></div>
+      <div class="kv"><span class="kv-k">KPI</span><span class="kv-v">재구매 고객 비율 15%↑ / 연간 출고 콘텐츠 24건↑</span></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════ KPI ═══════════════ -->
+<div id="page-kpi" class="page">
+<div class="container">
+  <div class="hero" style="padding-bottom:24px">
+    <div class="hero-eyebrow">Revenue Tracker</div>
+    <h1 class="hero-title" style="font-size:clamp(22px,3vw,32px)">주간 <em>실적 트래커</em></h1>
+    <p class="hero-desc" style="font-size:13px">매주 금요일 이 숫자만 보세요. 감이 아니라 데이터로 판단합니다.</p>
+  </div>
+
+  <div class="sec-title">이번 주 카운터</div>
+  <div class="counter-grid">
+    <div class="counter-card">
+      <div class="counter-val" id="c1" style="color:var(--blue)">0</div>
+      <div class="counter-label">발송 문자 수</div>
+      <div style="font-size:10px;color:var(--text3);margin-bottom:8px">주 10건 목표</div>
+      <div class="counter-btns">
+        <button class="counter-btn" onclick="cnt('c1',-1)">−</button>
+        <button class="counter-btn" onclick="cnt('c1',1)">+</button>
+      </div>
+    </div>
+    <div class="counter-card">
+      <div class="counter-val" id="c2" style="color:var(--green)">0</div>
+      <div class="counter-label">응답·상담 전환</div>
+      <div style="font-size:10px;color:var(--text3);margin-bottom:8px">3건 이상 = 정상</div>
+      <div class="counter-btns">
+        <button class="counter-btn" onclick="cnt('c2',-1)">−</button>
+        <button class="counter-btn" onclick="cnt('c2',1)">+</button>
+      </div>
+    </div>
+    <div class="counter-card">
+      <div class="counter-val" id="c3" style="color:var(--gold)">0</div>
+      <div class="counter-label">계약 or 예약</div>
+      <div style="font-size:10px;color:var(--text3);margin-bottom:8px">월 2건 목표</div>
+      <div class="counter-btns">
+        <button class="counter-btn" onclick="cnt('c3',-1)">−</button>
+        <button class="counter-btn" onclick="cnt('c3',1)">+</button>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;gap:8px;margin-bottom:20px">
+    <button onclick="resetCnt()" style="padding:5px 14px;border-radius:6px;border:1px solid var(--border2);background:none;color:var(--text2);font-size:11px;cursor:pointer;font-family:'Pretendard',sans-serif">주간 초기화</button>
+  </div>
+
+  <div class="info-box info-blue">
+    <strong>유입 경로 필수 질문 —</strong> 모든 상담에서 "어떻게 알고 오셨어요?"를 물어보고 기록하세요. 블로그 유입 계약 수 × 차량 마진 = 콘텐츠 ROI. 이 데이터 없이는 4주 후에도 감으로 판단하게 됩니다.
+  </div>
+
+  <div class="sec-title">4주 후 판단 기준</div>
+  <div class="judge-grid">
+    <div class="judge-card judge-continue">
+      <div class="judge-title">계속 + 강화</div>
+      <div class="judge-body">월 상담 8건 이상<br>콘텐츠 유입 문의 2건 이상<br>재접촉 응답률 25% 이상<br><br>→ 방향 유지, 발행 주기 올리기</div>
+    </div>
+    <div class="judge-card judge-adjust">
+      <div class="judge-title">조정</div>
+      <div class="judge-body">월 상담 4~7건<br>콘텐츠 유입 없음<br>응답률 15~25%<br><br>→ 문자 문구 교체, 소재 변경</div>
+    </div>
+    <div class="judge-card judge-pivot">
+      <div class="judge-title">방향 전환</div>
+      <div class="judge-body">월 상담 3건 이하<br>응답률 15% 미만<br>콘텐츠 반응 전무<br><br>→ 타깃 or 채널 자체 변경</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════ AI 비서 ═══════════════ -->
+<div id="page-ai" class="page">
+<div class="container">
+  <div class="hero" style="padding-bottom:24px">
+    <div class="hero-eyebrow">AI Sales Assistant</div>
+    <h1 class="hero-title" style="font-size:clamp(22px,3vw,32px)">온라인 영업 <em>AI 비서</em></h1>
+    <p class="hero-desc" style="font-size:13px">블로그 초안, 쇼츠 대본, 고객 응대 멘트를 즉시 생성합니다. 하슬라 전시장 맥락을 이미 알고 있습니다.</p>
+  </div>
+
+  <div class="ai-box">
+    <div class="ai-header">
+      <div class="ai-dot"></div>
+      <div class="ai-name">하슬라 AI 비서</div>
+      <div class="ai-sub">BMW · MINI 강릉 전문</div>
+    </div>
+    <div class="ai-messages" id="ai-messages">
+      <div class="msg msg-ai">
+        <div class="msg-ai-label">AI 비서</div>
+        안녕하세요! 하슬라 BMW·MINI 강릉 전시장 전담 AI 비서입니다.<br><br>
+        블로그 글 초안, 쇼츠 대본, 고객 문자 문구, 상담 응대 멘트 등 온라인 영업에 필요한 모든 콘텐츠를 즉시 만들어드립니다.<br><br>
+        아래 빠른 버튼을 누르거나, 직접 원하시는 내용을 입력해주세요.
+      </div>
+    </div>
+    <div class="quick-btns">
+      <button class="quick-btn" onclick="askAI('BMW X5 출고 후기 블로그 글 초안 써줘')">X5 출고 후기 블로그</button>
+      <button class="quick-btn" onclick="askAI('MINI 컨버터블 60초 쇼츠 대본 만들어줘')">MINI 쇼츠 대본</button>
+      <button class="quick-btn" onclick="askAI('리스 고민하는 고객한테 보낼 문자 문구 만들어줘')">리스 고민 고객 문자</button>
+      <button class="quick-btn" onclick="askAI('이번 달 강릉 BMW 블로그 키워드 추천해줘')">이달의 키워드</button>
+      <button class="quick-btn" onclick="askAI('재구매 고객 VIP 응대 멘트 만들어줘')">재구매 VIP 응대</button>
+    </div>
+    <div class="ai-input-row">
+      <input class="ai-input" id="ai-input" placeholder="원하는 콘텐츠·멘트를 입력하세요..." onkeydown="if(event.key==='Enter')sendAI()">
+      <button class="ai-send" id="ai-send-btn" onclick="sendAI()">전송</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+// Date chip
+const now = new Date();
+const days = ['일','월','화','수','목','금','토'];
+document.getElementById('date-chip').textContent =
+  `${now.getFullYear()}.${String(now.getMonth()+1).padStart(2,'0')}.${String(now.getDate()).padStart(2,'0')} (${days[now.getDay()]})`;
+
+// Page nav
+function goPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  const btns = document.querySelectorAll('.nav-btn');
+  btns.forEach(b => { if(b.getAttribute('onclick') && b.getAttribute('onclick').includes(id)) b.classList.add('active'); });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// Tasks
+function toggleTask(el) {
+  el.classList.toggle('checked');
+  const title = el.nextElementSibling.querySelector('.task-name');
+  const isChecked = el.classList.contains('checked');
+  title.style.textDecoration = isChecked ? 'line-through' : 'none';
+  title.style.opacity = isChecked ? '0.4' : '1';
+}
+
+// Content tabs
+function goContentTab(idx) {
+  document.querySelectorAll('#page-content .step-panel').forEach((p,i) => {
+    if(p.id && p.id.startsWith('ct-')) p.classList.toggle('active', i === idx);
+  });
+  document.querySelectorAll('#content-nav .step-btn').forEach((b,i) => b.classList.toggle('active', i === idx));
+}
+
+// Blog steps
+function goBlogStep(idx) {
+  document.querySelectorAll('[data-bs]').forEach(p => p.classList.toggle('active', parseInt(p.dataset.bs) === idx));
+  document.querySelectorAll('#blog-step-nav .step-btn').forEach((b,i) => b.classList.toggle('active', i === idx));
+  document.querySelectorAll('#blog-prog .prog-seg').forEach((s,i) => s.classList.toggle('on', i <= idx));
+}
+
+// Shorts scripts
+function goShortsScript(idx, btn) {
+  [0,1,2].forEach(i => {
+    const el = document.getElementById('ss-'+i);
+    if(el) el.style.display = i===idx ? 'block' : 'none';
+  });
+  btn.closest('.step-nav').querySelectorAll('.step-btn').forEach((b,i) => b.classList.toggle('active', i===idx));
+}
+
+// Copy
+function copyText(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '복사됨 ✓';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '복사'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// Roadmap accordion
+function togglePhase(header) {
+  header.classList.toggle('open');
+  const body = header.nextElementSibling;
+  body.classList.toggle('open');
+}
+
+// Counters
+const counts = {c1:0, c2:0, c3:0};
+function cnt(id, d) {
+  counts[id] = Math.max(0, counts[id] + d);
+  document.getElementById(id).textContent = counts[id];
+}
+function resetCnt() { Object.keys(counts).forEach(k => { counts[k]=0; document.getElementById(k).textContent=0; }); }
+
+// AI Assistant
+const SYSTEM = `당신은 하슬라 BMW·MINI 강릉 전시장(코오롱 모터스 강릉)의 온라인 영업 AI 비서입니다.
+
+전시장 정보:
+- 위치: 강릉 (강원 영동권 유일 BMW·MINI 복합 전시장)
+- 오픈 3년차, 3층 규모, Retail.NEXT 적용
+- 시승 코스: 경포, 안목해변, 정동진
+- AS: 강원도 전 지역 출동 서비스
+
+핵심 타깃:
+1. 강릉 사업주 (40대, 법인/현금+할부, X5·5·7시리즈)
+2. 영동권 전문직 (35~45세, 리스/할부, MINI·3·4시리즈)
+3. 수도권 세컨드카 (30~50대, 현금/렌트, MINI·X3)
+
+채널 포지셔닝: "강릉에서 BMW·MINI 라이프스타일을 사는 곳"
+핵심 설득 논리: 서울 안 가도 된다(편의성) + 담당자 관계(신뢰) + 강릉 드라이브(감성)
+
+SC(영업사원)의 요청에 따라 블로그 초안, 쇼츠 대본, 문자 문구, 상담 응대 멘트를 한국어로 즉시 생성하세요.
+실용적이고 바로 쓸 수 있는 형태로, 간결하게 답변하세요.`;
+
+async function sendAI() {
+  const input = document.getElementById('ai-input');
+  const msg = input.value.trim();
+  if (!msg) return;
+  askAI(msg);
+  input.value = '';
+}
+
+async function askAI(text) {
+  const msgs = document.getElementById('ai-messages');
+  const sendBtn = document.getElementById('ai-send-btn');
+  const input = document.getElementById('ai-input');
+
+  // User message
+  const userDiv = document.createElement('div');
+  userDiv.className = 'msg msg-user';
+  userDiv.textContent = text;
+  msgs.appendChild(userDiv);
+
+  // Typing indicator
+  const typing = document.createElement('div');
+  typing.className = 'typing';
+  typing.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
+  typing.style.display = 'block';
+  msgs.appendChild(typing);
+  msgs.scrollTop = msgs.scrollHeight;
+
+  sendBtn.disabled = true;
+  input.disabled = true;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: SYSTEM,
+        messages: [{ role: 'user', content: text }]
+      })
+    });
+    const data = await res.json();
+    const reply = data.content?.map(c => c.text || '').join('\n') || '응답을 받지 못했습니다.';
+
+    typing.remove();
+    const aiDiv = document.createElement('div');
+    aiDiv.className = 'msg msg-ai';
+    aiDiv.innerHTML = '<div class="msg-ai-label">AI 비서</div>' + reply.replace(/\n/g, '<br>');
+    msgs.appendChild(aiDiv);
+  } catch(e) {
+    typing.remove();
+    const errDiv = document.createElement('div');
+    errDiv.className = 'msg msg-ai';
+    errDiv.innerHTML = '<div class="msg-ai-label">AI 비서</div>죄송합니다, 응답 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.';
+    msgs.appendChild(errDiv);
+  }
+
+  msgs.scrollTop = msgs.scrollHeight;
+  sendBtn.disabled = false;
+  input.disabled = false;
+  input.focus();
+}
+</script>
+</body>
+</html>
